@@ -23,7 +23,9 @@ if __name__ == '__main__':
 
     wines_excel_path = env('WINES_EXCEL_PATH')
     categorized_wines = defaultdict(list)
-    for wine in pd.read_excel(wines_excel_path, keep_default_na=False).to_dict(orient='records'):
+    wines = pd.read_excel(wines_excel_path, keep_default_na=False) \
+              .to_dict(orient='records')
+    for wine in wines:
         categorized_wines[wine['Категория']].append(wine)
 
     env = Environment(loader=FileSystemLoader('.'),
